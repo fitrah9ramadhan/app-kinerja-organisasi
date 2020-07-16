@@ -1,0 +1,116 @@
+WindowManager:
+    Login:
+    Beranda:
+    Registrasi
+
+<Login>:
+    name: "login"
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: "Akun Generasi Baru Indonesia"
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Username: "
+
+            TextInput:
+                id: usern
+                multiline: False
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: passw
+                multiline: False
+
+
+        Button:
+            text: "Masuk"
+            on_release: 
+                app.root.current = "beranda"
+				root.manager.transition.direction = "left"
+
+        Button:
+            text: "Daftar Sebagai Admin"
+            on_release:
+                app.root.current = "registrasi"
+                root.manager.transition.direction = "right"
+
+
+
+<Beranda>:
+    name: "beranda"
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "Selamat Datang"
+
+
+        Button:
+            text: "Kembali"
+            on_release: 
+                app.root.current = "login"
+                root.manager.transition.direction = "right"
+
+
+<Registrasi>:
+    name: "registrasi"
+
+    GridLayout:
+        cols: 1
+        Label:
+            text: "Halaman Registrasi Akun Generasi Baru Indonesia"
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Nama Lengkap: "
+
+            TextInput:
+                id: "namalengkap"
+                multiline : False
+
+            Label:
+                text: "Kampus: "
+
+            TextInput:
+                id: "kampus"
+                multiline : False
+
+            Label:
+                text: "Fakultas: "
+
+            TextInput:
+                id: "fakultas"
+                multiline : False
+
+            Label:
+                text: "Jurusan: "
+
+            TextInput:
+                id: "jurusan"
+                multiline : False
+
+            Label:
+                text: "Angkatan: "
+
+            TextInput:
+                id: "angkatan"
+                multiline : False
+
+        Button:
+            text: "Daftar Sekarang"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "right"
+
+
+

@@ -1,116 +1,258 @@
-WindowManager:
-    Login:
-    Beranda:
-    Registrasi
+<CreateAccountWindow>:
+    name: "create"
 
-<Login>:
-    name: "login"
-
+    namee: namee
+    email: email
+    password: passw
+    tes: tes
+    
     GridLayout:
-        cols: 1
-
+        cols:1
         Label:
-            text: "Akun Generasi Baru Indonesia"
+            text: "Create an Account"
 
         GridLayout:
             cols: 2
 
             Label:
-                text: "Username: "
-
+                text: "Name: "
             TextInput:
-                id: usern
+                id: namee
+                multiline: False
+
+
+            Label:
+                text: "Email: "
+            TextInput:
+                id: email
+                multiline: False
+
+
+            Label:
+                text: "Tes: "
+            TextInput:
+                id:tes
                 multiline: False
 
             Label:
                 text: "Password: "
-
             TextInput:
                 id: passw
                 multiline: False
+                password: True
 
 
         Button:
-            text: "Masuk"
-            on_release: 
-                app.root.current = "beranda"
-				root.manager.transition.direction = "left"
-
-        Button:
-            text: "Daftar Sebagai Admin"
+            text: "Already have an Account? Log In"
             on_release:
-                app.root.current = "registrasi"
-                root.manager.transition.direction = "right"
-
-
-
-<Beranda>:
-    name: "beranda"
-
-    GridLayout:
-        cols: 1
-        Label:
-            text: "Selamat Datang"
-
+                root.manager.transition.direction = "left"
+                root.login()
 
         Button:
-            text: "Kembali"
-            on_release: 
-                app.root.current = "login"
-                root.manager.transition.direction = "right"
+            text: "Submit"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
 
 
-<Registrasi>:
-    name: "registrasi"
+<LoginWindow>:
+    name: "login"
+
+    email: email
+    password: password
 
     GridLayout:
-        cols: 1
+        cols:1
         Label:
-            text: "Halaman Registrasi Akun Generasi Baru Indonesia"
+            text: "Masuk"
 
         GridLayout:
             cols: 2
+            Label:
+                text:"Email: "
+            TextInput:
+                id: email
+                multiline: False
 
             Label:
-                text: "Nama Lengkap: "
-
+                text:"Password: "
             TextInput:
-                id: "namalengkap"
-                multiline : False
-
-            Label:
-                text: "Kampus: "
-
-            TextInput:
-                id: "kampus"
-                multiline : False
-
-            Label:
-                text: "Fakultas: "
-
-            TextInput:
-                id: "fakultas"
-                multiline : False
-
-            Label:
-                text: "Jurusan: "
-
-            TextInput:
-                id: "jurusan"
-                multiline : False
-
-            Label:
-                text: "Angkatan: "
-
-            TextInput:
-                id: "angkatan"
-                multiline : False
+                id: password
+                multiline: False
+                password: True
 
         Button:
-            text: "Daftar Sekarang"
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn()
+
+        Button:
+            text: "Don't have an Account? Create One"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
+
+
+<MainWindow>:
+    tambahProker: tambahProker
+    lihatKeaktivan: lihatKeaktivan
+    credit:credit
+    tambahAnggota: tambahAnggota
+    GridLayout:
+
+        cols:1
+        Label:
+            text: "HALAMAN UTAMA"
+
+        GridLayout:
+            cols:2
+            Button:
+                id: tambahProker
+                text: "Tambah Proker: "
+                on_release:
+                    app.root.current = "tambpro"
+
+            Button:
+                id: lihatKeaktivan
+                text: "Lihat Keaktivan Anggota: "
+
+            Button:
+                id: credit
+                text: "Tentang Aplikasi: "
+                on_release:
+                    app.root.current = "credits"
+            Button:
+                id: tambahAnggota
+                text: "Tambah Anggota"
+                on_release:
+                    app.root.current = "tambang"
+
+        Button:
+            text: "Log Out"
             on_release:
                 app.root.current = "login"
-                root.manager.transition.direction = "right"
+                root.manager.transition.direction = "down"
 
 
 
+<TambahAnggota>:
+
+    name: "tambang"
+
+    nama_lengkap:nama_lengkap
+    komisariat:komisariat
+    fakultas:fakultas
+    jurusan:jurusan
+    angkatan:angkatan
+    deputi:deputi
+
+    GridLayout:
+        cols:1
+        Label:
+            text: "Borang Daftar Anggota Generasi Baru Indonesia \n Wilayah Sulawesi Selatan"
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Nama Lengkap:"
+            TextInput:
+                id:nama_lengkap
+                multiline : False
+
+            Label:
+                text: "Komisariat:"
+            TextInput:
+                id:komisariat
+                multiline : False
+
+            Label:
+                text: "Fakultas:"
+            TextInput:
+                id:fakultas
+                multiline : False
+
+            Label:
+                text: "Jurusan:"
+            TextInput:
+                id:jurusan
+                multiline: False
+
+            Label:
+                text: "angkatan:"
+            TextInput:
+                id:angkatan
+                multiline: False
+
+            Label:
+                text: "Deputi:"
+            TextInput:
+                id:deputi
+                multiline: False
+
+        Button:
+            text: "Tambah Anggota"
+            on_release:
+                root.tombol_tambah_anggota()
+
+
+
+<TambahProker>:
+
+    name: "tambpro"
+
+    nama_proker:nama_proker
+    deputi:deputi
+    pic:pic
+    partisipan:partisipan
+
+    GridLayout:
+        cols:1
+        Label:
+            text: "Tambah Proker"
+        GridLayout:
+            cols: 2
+            Label:
+                text: "Nama Proker: "
+            TextInput:
+                id: nama_proker
+                multiline: False
+
+            Label:
+                text: "Deputi: "
+            TextInput:
+                id:deputi
+
+            Label: 
+                text: "PIC"
+            TextInput:
+                id:pic
+
+            Label:
+                text: "Partisipan: "
+            TextInput:
+                id: partisipan
+
+        Button:
+            text: "Tambah"
+            on_release:
+                root.tombol_tambah_proker()
+
+        Button:
+            text: "Kembali"
+            on_release:
+                root.back()
+
+<Credits>:
+    name: "credits"
+
+    GridLayout:
+        cols: 1
+        Label: 
+            text: "Oleh Muhammad Nur Fitrah Ramadhan \n Generasi Baru Indonesia \n Komisariat Universitas Hasanuddin \n Penerima Beasiswa Angkatan 2019 dan 2020"
+
+        Button:
+            text: "kembali"
+            on_release:
+                root.back()

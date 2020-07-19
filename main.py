@@ -69,33 +69,19 @@ class WindowManager(ScreenManager):
     pass
 
 
-def invalidLogin():
-    pop = Popup(title='Invalid Login',
-                  content=Label(text='Invalid username or password.'),
-                  size_hint=(None, None), size=(400, 400))
-    pop.open()
-
-
-def invalidForm():
-    pop = Popup(title='Invalid Form',
-                  content=Label(text='Please fill in all inputs with valid information.'),
-                  size_hint=(None, None), size=(400, 400))
-
-    pop.open()
 
 class TambahAnggota(Screen):
 
-    nama_lengkap = ObjectProperty(None)
+    namaAnggota = ObjectProperty(None)
     komisariat = ObjectProperty(None)
     fakultas = ObjectProperty(None)
     jurusan = ObjectProperty(None)
-    angkatan = ObjectProperty(None)
     deputi = ObjectProperty(None)
 
     def tombol_tambah_anggota(self):
-        if self.nama_lengkap.text != "" and self.komisariat.text != "" and self.fakultas.text != "" and self.jurusan.text != "" and self.angkatan.text != "" and self.deputi.text != "":
+        if self.namaAnggota.text != "" and self.komisariat.text != "" and self.fakultas.text != "" and self.jurusan.text != "" and self.deputi.text != "":
 
-            dbAnggota.add_anggota(self.nama_lengkap.text, self.komisariat.text, self.fakultas.text, self.jurusan.text, self.angkatan.text, self.deputi.text)
+            dbAnggota.add_anggota(self.namaAnggota.text, self.komisariat.text, self.fakultas.text, self.jurusan.text, self.deputi.text)
 
             self.tambah_anggota_berhasil_popup()
             self.reset()
@@ -120,11 +106,10 @@ class TambahAnggota(Screen):
         pop.open()
 
     def reset(self):
-        self.nama_lengkap.text = ""
+        self.namaAnggota.text = ""
         self.komisariat.text = ""
         self.fakultas.text = ""
         self.jurusan.text = ""
-        self.angkatan.text = ""
         self.deputi.text = ""
 
     def back(self):
@@ -180,6 +165,60 @@ class Credits(Screen):
     def back(self):
         sm.current = "main"
 
+class LihatKeaktivan(Screen):
+    namaAnggota = ObjectProperty(None)
+    komisariat = ObjectProperty(None)
+
+    def tombol_cari_anggota(self):
+
+        if dbAnggota.validate(self.namaAnggota.text, self.komisariat.text):
+
+            HasilAnggota.current = self.namaAnggota.text
+            self.reset()
+            sm.current = "hasang"
+        else:
+            invalidLogin()
+
+    def reset(self):
+        self.namaAnggota.text = ""
+        self.komisariat.text = ""
+
+
+class HasilAnggota(Screen):
+
+    n = ObjectProperty(None)
+    komisariatt = ObjectProperty(None)
+    fakultass = ObjectProperty(None)
+    jurusann = ObjectProperty(None)
+    deputii = ObjectProperty(None)
+    created = ObjectProperty(None)
+    current = ""
+
+    def on_enter(self, *args):
+        komisariat, fakultas, jurusan, deputi, created = dbAnggota.get_anggota(self.current)
+
+        self.n.text = "Nama Lengkap: " + self.current
+        self.komisariatt.text = "Komisariat: " + komisariat
+        self.fakultass.text = "Fakultas: " + fakultas
+        self.jurusann.text = "Jurusan: " + jurusan
+        self.deputii.text = "Deputi: " + deputi
+        self.createdd.text = "Terdaftar pada Tanggal: " + created
+
+
+        
+def invalidLogin():
+    pop = Popup(title='Invalid Login',
+                  content=Label(text='Invalid username or password.'),
+                  size_hint=(None, None), size=(400, 400))
+    pop.open()
+
+
+def invalidForm():
+    pop = Popup(title='Invalid Form',
+                  content=Label(text='Please fill in all inputs with valid information.'),
+                  size_hint=(None, None), size=(400, 400))
+    pop.open()
+
 kv = Builder.load_file("my.kv")
 
 sm = WindowManager()
@@ -192,7 +231,9 @@ screens = [LoginWindow(name="login"),
            MainWindow(name="main"), 
            TambahProker(name = "tambpro"), 
            Credits(name = "credits"),
-           TambahAnggota(name = "tambang")]
+           TambahAnggota(name = "tambang"),
+           LihatKeaktivan(name = "lihkea"),
+           HasilAnggota(name = "hasang")]
 
 for screen in screens:
     sm.add_widget(screen)

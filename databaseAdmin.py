@@ -26,7 +26,7 @@ class DataBaseAdmin:
 
     def add_user(self, email, password, name, tes):
         if email.strip() not in self.users:
-            self.users[email.strip()] = (password.strip(), name.strip(), tes.strip(), DataBase.get_date())
+            self.users[email.strip()] = (password.strip(), name.strip(), tes.strip(), DataBaseAdmin.get_date())
             self.save()
             return 1
         else:

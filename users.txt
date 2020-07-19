@@ -1,2 +1,2 @@
-fitrah9ramadhan@gmail.com;1234;Fitrah Ramadhan;aman;2020-07-18
-aa@.;123;aa;baik;2020-07-18
+admin@gmail.com;admin;admin;aa;2020-07-19
+super@gmail.com;1234;super;bb;2020-07-19

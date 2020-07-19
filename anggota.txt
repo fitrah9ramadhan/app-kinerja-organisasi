@@ -1,2 +1,3 @@
-rr;rr;rr;rr;rr;rr2020-07-18;
-ww;ww;ww;ww;ww;ww2020-07-18;
+Yusdin;UINAM;Ekonomi;Akuntansi;-;2020-07-19
+Fitrah;UNHAS;Ekonomi;Ilmu Ekonomi;-;2020-07-19
+gias;unhas;teknik;mesin;lingkungan;2020-07-19

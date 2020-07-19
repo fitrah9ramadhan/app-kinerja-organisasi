@@ -116,6 +116,8 @@
             Button:
                 id: lihatKeaktivan
                 text: "Lihat Keaktivan Anggota: "
+                on_release:
+                    app.root.current = "lihkea"
 
             Button:
                 id: credit
@@ -140,11 +142,10 @@
 
     name: "tambang"
 
-    nama_lengkap:nama_lengkap
+    namaAnggota:namaAnggota
     komisariat:komisariat
     fakultas:fakultas
     jurusan:jurusan
-    angkatan:angkatan
     deputi:deputi
 
     GridLayout:
@@ -158,7 +159,7 @@
             Label:
                 text: "Nama Lengkap:"
             TextInput:
-                id:nama_lengkap
+                id:namaAnggota
                 multiline : False
 
             Label:
@@ -180,12 +181,6 @@
                 multiline: False
 
             Label:
-                text: "angkatan:"
-            TextInput:
-                id:angkatan
-                multiline: False
-
-            Label:
                 text: "Deputi:"
             TextInput:
                 id:deputi
@@ -195,6 +190,11 @@
             text: "Tambah Anggota"
             on_release:
                 root.tombol_tambah_anggota()
+
+        Button:
+            text: "Kembali"
+            on_release:
+                app.root.current = "main"
 
 
 
@@ -244,6 +244,42 @@
             on_release:
                 root.back()
 
+<LihatKeaktivan>:
+    name: "lihkea"
+
+    namaAnggota:namaAnggota
+    komisariat: komisariat
+
+    GridLayout:
+        cols: 1
+
+        Label:
+            text: "Cari Nama Anggota"
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Nama Lengkap"
+            TextInput:
+                id: namaAnggota
+
+            Label:
+                text: "Komisariat"
+            TextInput:
+                id: komisariat
+
+        Button:
+            text: "Cari"
+            on_release:
+                root.tombol_cari_anggota()
+        Button:
+            text: "Kembali"
+            on_release:
+                app.root.current = "main"
+
+
+
 <Credits>:
     name: "credits"
 
@@ -256,3 +292,40 @@
             text: "kembali"
             on_release:
                 root.back()
+
+<HasilAnggota>:
+    name: "hasang"
+
+    n:n
+    komisariatt:komisariatt
+    fakultass:fakultass
+    jurusann:jurusann
+    deputii:deputii
+    createdd:createdd
+
+    GridLayout:
+        cols:1
+
+        Label:
+            id: n
+            text: "Nama Lengkap: "
+
+        Label:
+            id: komisariatt
+            text: "Komisariat: "
+
+        Label:
+            id: fakultass
+            text: "Fakultas: "
+
+        Label:
+            id: jurusann
+            text: "Jurusan: "
+
+        Label:
+            id: deputii
+            text: "Deputi: "
+
+        Label:
+            id:createdd
+            text: "Terdaftar Tanggal: "
